@@ -4,7 +4,9 @@ import './App.css';
 function App() {
   return (
     <div className="App">
+      <h1>đồ ăn DLC
 
+      </h1>
     </div>
   );
 }
