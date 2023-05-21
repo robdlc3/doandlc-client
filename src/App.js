@@ -7,6 +7,9 @@ function App() {
       <h1>đồ ăn DLC
 
       </h1>
+      <h2>
+        
+      </h2>
     </div>
   );
 }
