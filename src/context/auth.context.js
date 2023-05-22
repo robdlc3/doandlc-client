@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import { LoadingContext } from "./loading.context";
 import { get } from '../services/authService'
 
+
 const AuthContext = createContext();
 function AuthProvider({ children }) {
     const { setIsLoading, setUser } = useContext(LoadingContext)
