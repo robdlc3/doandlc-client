@@ -39,8 +39,8 @@ function App() {
         <Route path='/restaurant/:id' element={<RestaurantDetails />} />
         <Route path='/posts' element={<Posts />} />
         <Route path='/posts/:id' element={<PostDetails />} />
-        
-        
+
+
         <Route element={<NotLoggedIn />}>
           <Route path='/signup' element={<Signup />} />
           <Route path='/login' element={<Login />} />
