@@ -16,8 +16,8 @@ const Profile = () => {
                         : <p>No restaurant visited</p>
                     }
                     <p>Name: {user.fullName}</p>
-                    <p>Age: {user.age}</p>
-                    <p>Location: {user.location}</p>
+
+
                     <Link to={`/profile/${user._id}`}><button>Update Profile</button></Link>
                 </div>
             }
