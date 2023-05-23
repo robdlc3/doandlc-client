@@ -3,6 +3,7 @@ import { get } from "../services/authService";
 import axios from 'axios'
 
 const LoadingContext = createContext()
+
 const LoadingProvider = ({ children }) => {
 
     const [isLoading, setIsLoading] = useState(true);
@@ -22,6 +23,7 @@ const LoadingProvider = ({ children }) => {
             .catch((err) => {
                 console.log(err)
             })
+
     }
 
     const findRestaurant = (id) => {
@@ -32,6 +34,7 @@ const LoadingProvider = ({ children }) => {
     }
 
     const getPosts = () => {
+
         get('/posts')
             .then((results) => {
                 console.log("retrieved posts", results.data)

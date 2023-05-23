@@ -1,21 +1,22 @@
 import { useEffect, createContext, useContext } from "react";
+
 import { useNavigate } from 'react-router-dom'
 import { LoadingContext } from "./loading.context";
 import { get } from '../services/authService'
 
-
 const AuthContext = createContext();
+
 function AuthProvider({ children }) {
     const { setIsLoading, setUser } = useContext(LoadingContext)
-
     const navigate = useNavigate()
-
     const storeToken = (token) => {
         localStorage.setItem('authToken', token);
     }
+
     const removeToken = () => {
         localStorage.removeItem("authToken");
     }
+
     const authenticateUser = () => {
         // Get the stored token from the localStorage
         const storedToken = localStorage.getItem('authToken');
@@ -48,19 +49,19 @@ function AuthProvider({ children }) {
             setUser(null);
         }
     }
+
     const logOutUser = () => {
         // To log out the user, remove the token
         removeToken();
         // and update the state variables    
         authenticateUser();
+
         navigate('/')
     }
 
     useEffect(() => {
         authenticateUser();
-    }, []);
-
-
+    }, [authenticateUser]);
 
     return (
         <AuthContext.Provider value={{ storeToken, authenticateUser, logOutUser }}>
