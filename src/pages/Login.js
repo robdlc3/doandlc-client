@@ -7,7 +7,7 @@ import { post } from "../services/authService"
 const Login = () => {
 
     const { setUser } = useContext(LoadingContext)
-
+    
     const { storeToken } = useContext(AuthContext)
 
     const [thisUser, setThisUser] = useState({
@@ -41,11 +41,9 @@ const Login = () => {
 
 
         <div id="auth-landing">
-
             <h1>Login</h1>
-
             <form onSubmit={handleSubmit}>
-
+                
                 <label>email</label>
                 <input type="text" name="email" value={thisUser.email} onChange={handleChange} />
 

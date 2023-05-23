@@ -12,7 +12,8 @@ const Navbar = () => {
         <nav className="navbar-container">
             <Link to='/'>Home</Link>
             <Link to='/restaurants'>Restaurants</Link>
-            <Link to='/posts'>Posts</Link>
+            <Link to='/posts'>Reviews</Link>
+            {/* Changed Posts to reviews 10A */}
             {
                 getToken() ?
                     <>

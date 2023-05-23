@@ -10,9 +10,7 @@ const Signup = () => {
     const [newUser, setNewUser] = useState({
         email: "",
         password: "",
-        fullName: "",
-        location: "",
-        age: 0
+        fullName: ""
     })
 
     const navigate = useNavigate()
@@ -28,7 +26,8 @@ const Signup = () => {
             .then((results) => {
                 console.log("Signup", results.data)
                 storeToken(results.data.authToken)
-                setUser({ ...results.data.user, fullName: '', location: '', age: '' })
+                setUser({ ...results.data.user, fullName: '' })
+                // setUser({ ...results.data.user, fullName: '', location: ''}) removed location
                 navigate('/profile')
             })
             .catch((err) => {
