@@ -11,3 +11,31 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.navbar-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #f8f8f8;
+  padding: 10px 20px;
+}
+
+.navbar-link {
+  margin-right: 10px;
+  color: #333;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.logout-button {
+  padding: 5px 10px;
+  background-color: #f44336;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.logout-button:hover {
+  background-color: #d32f2f;
+}
