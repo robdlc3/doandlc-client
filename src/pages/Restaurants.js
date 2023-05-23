@@ -24,7 +24,9 @@ const Restaurants = () => {
     useEffect(() => {
         if (!restaurants.length) {
             getRestaurants()
+
         }
+        console.log(restaurants)
     }, [])
 
     return (
@@ -43,14 +45,14 @@ const Restaurants = () => {
             {
                 restaurants.length ?
                     <>
-                        {
-                            searched(sort(restaurants)).map((restaurant) => {
-                                return (
-                                    <Link to={`/restaurant/${restaurant._id}`} key={restaurant._id}>
-                                        <p>{restaurant.name}</p>
-                                    </Link>
-                                )
-                            })
+                        {/* { searched(sort(restaurants)) */}
+                        {restaurants.map((restaurant) => {
+                            return (
+                                <Link to={`/restaurant/${restaurant?._id}`} key={restaurant._id}>
+                                    <p>{restaurant.restaurantName}</p>
+                                </Link>
+                            )
+                        })
                         }
                     </>
                     :

@@ -1,11 +1,15 @@
-import { uploadImage } from './services/authService';
+import { uploadImage } from '../services/authService';
 import { post } from '../services/authService';
-import { useState } from 'react';
+import { useState, useContext } from 'react';
+import Restaurants from './Restaurants';
+import { useNavigate } from 'react-router-dom';
+import { LoadingContext } from '../context/loading.context';
 
 const AddRestaurant = () => {
+  const navigate = useNavigate()
+  const { restaurants, setRestaurants } = useContext(LoadingContext)
   const [newRestaurant, setNewRestaurant] = useState({
-    name: '',
-    description: '',
+    restaurantName: '',
     image: '',
   });
 
@@ -17,30 +21,43 @@ const AddRestaurant = () => {
   };
 
   const handleFileChange = (e) => {
+    e.preventDefault();
     const file = e.target.files[0];
-    setNewRestaurant((prev) => ({
-      ...prev,
-      image: file,
-    }));
+    console.log(file)
+    if (file) {
+      const uploadData = new FormData();
+      uploadData.append('image', file);
+      post('/photo', uploadData)
+        .then((response) => {
+
+          setNewRestaurant({
+            ...newRestaurant,
+            image: response.data.image,
+          });
+        })
+    }
+
+    // setNewRestaurant((prev) => ({
+    //   ...prev,
+    //   image: file,
+    // }));
   };
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
 
-    const uploadData = new FormData();
-    uploadData.append('name', newRestaurant.name);
-    uploadData.append('description', newRestaurant.description);
-    uploadData.append('image', newRestaurant.image);
+    e.preventDefault()
 
-    post('/photo', uploadData)
-      .then(() => {
-        console.log('Image uploaded successfully');
-        setNewRestaurant({
-          name: '',
-          description: '',
-          image: '',
-        });
-      })
+    console.log(newRestaurant)
+
+    // console.log("these are the restaurants from state", restaurants)
+
+    post("/restaurants/create", newRestaurant).then((response) => {
+      console.log("added restaurant!", response.data)
+      setRestaurants([...restaurants, response.data.createdRestaurant])
+      navigate('/restaurants')
+    })
+
+
       .catch((error) => {
         console.log('Error uploading image:', error);
       });
@@ -53,7 +70,7 @@ const AddRestaurant = () => {
         <label>Name</label>
         <input
           type="text"
-          name="name"
+          name="restaurantName"
           value={newRestaurant.name}
           onChange={handleInputChange}
         />
