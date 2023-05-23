@@ -18,7 +18,7 @@ const Navbar = () => {
                 getToken() ?
                     <>
                         <Link to='/profile'>Profile</Link>
-                        <Link to='/add-post'>Add Post</Link>
+                        <Link to='/add-post'>Add Review</Link>
                         <button onClick={logOutUser}>Logout</button>
                     </>
                     :

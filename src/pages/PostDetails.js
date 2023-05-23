@@ -1,9 +1,17 @@
-import React from 'react'
+import React from 'react';
+import { useLocation } from 'react-router-dom';
 
 const PostDetails = () => {
-  return (
-    <div>PostDetails</div>
-  )
-}
+  const location = useLocation();
+  const { post } = location.state;
 
-export default PostDetails
+  return (
+    <div>
+      <h2>{post.title}</h2>
+      <p>{post.story}</p>
+      {/* Render other post details */}
+    </div>
+  );
+};
+
+export default PostDetails;
