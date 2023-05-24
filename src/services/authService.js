@@ -5,9 +5,8 @@ export const get = (route) => {
     let token = localStorage.getItem("authToken");
 
     return axios.get(baseUrl + route, {
-        headers: { Authorization: `Bearer ${token}` }
+        headers: { Authorization: `Bearer ${token}` },
     });
-
 };
 
 export const post = (route, body) => {
@@ -16,5 +15,12 @@ export const post = (route, body) => {
     return axios.post(baseUrl + route, body, {
         headers: { Authorization: `Bearer ${token}` },
     });
+};
 
+export const updateProfile = (userId, updatedProfile) => {
+    let token = localStorage.getItem("authToken");
+
+    return axios.put(baseUrl + `/users/${userId}`, updatedProfile, {
+        headers: { Authorization: `Bearer ${token}` },
+    });
 };

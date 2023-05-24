@@ -11,6 +11,7 @@ import Login from './pages/Login';
 import Profile from './pages/Profile';
 import AddPost from './pages/AddPost';
 import ProfileUpdate from './pages/ProfileUpdate';
+import AddRestaurant from './pages/AddRestaurant';
 
 
 function App() {
@@ -51,6 +52,7 @@ function App() {
           <Route path='/profile' element={<Profile />} />
           <Route path='/profile/:id' element={<ProfileUpdate />} />
           <Route path='/add-post' element={<AddPost />} />
+          <Route path='/add-restaurant' element={<AddRestaurant />} />
         </Route>
 
       </Routes>

@@ -16,14 +16,13 @@ const LoadingProvider = ({ children }) => {
 
     const getRestaurants = () => {
 
-        axios.get("https://ih-countries-api.herokuapp.com/countries")
+        axios.get("http://localhost:4000/restaurants")
             .then((results) => {
                 setRestaurants(results.data)
             })
             .catch((err) => {
                 console.log(err)
             })
-
     }
 
     const findRestaurant = (id) => {
@@ -34,7 +33,6 @@ const LoadingProvider = ({ children }) => {
     }
 
     const getPosts = () => {
-
         get('/posts')
             .then((results) => {
                 console.log("retrieved posts", results.data)
@@ -43,14 +41,13 @@ const LoadingProvider = ({ children }) => {
             .catch((err) => {
                 console.log(err)
             })
-
     }
 
     const getUserPosts = (id) => {
     }
 
     return (
-        <LoadingContext.Provider value={{ restaurants, user, isLoading, setIsLoading, setUser, getRestaurants, findRestaurant, restaurant, getUserPosts, buttonDisabled, setButtonDisabled, posts, setPosts, getPosts }} >
+        <LoadingContext.Provider value={{ restaurants, user, isLoading, setIsLoading, setUser, getRestaurants, findRestaurant, restaurant, getUserPosts, buttonDisabled, setButtonDisabled, posts, setPosts, getPosts, setRestaurants }} >
             {children}
         </LoadingContext.Provider>
     )
