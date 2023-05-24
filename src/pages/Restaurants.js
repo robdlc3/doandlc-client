@@ -43,24 +43,24 @@ const Restaurants = () => {
                 <button>Add New Restaurant</button>
             </Link>
             {
-                restaurants.length ?
-                    <>
-                        {/* { searched(sort(restaurants)) */}
-                        {restaurants.map((restaurant) => {
-                            return (
-                                <Link to={`/restaurant/${restaurant?._id}`} key={restaurant._id}>
-                                    <p>{restaurant.restaurantName}</p>
-                                    <img src={restaurant.image} alt="restaurant image" class="restaurant-image" />
-                                </Link>
-                            )
-                        })
-                        }
-                    </>
-                    :
-                    <p>Loading...</p>
-            }
-        </div>
-    )
+               restaurants.length ?
+               <>
+                   {/* { searched(sort(restaurants)) */}
+                   {restaurants.map((restaurant) => {
+                       return (
+                           <Link to={`/restaurant/${restaurant?._id}`} key={restaurant._id}>
+                               <p>{restaurant.restaurantName}</p>
+                               <img src={restaurant.image} alt="restaurant image" class="restaurant-image" />
+                           </Link>
+                       )
+                   })
+                   }
+               </>
+               :
+               <p>Loading...</p>
+       }
+   </div>
+)
 }
 
 export default Restaurants

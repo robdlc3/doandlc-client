@@ -4,18 +4,20 @@ import { fileChange } from '../services/fileChange';
 import { LoadingContext } from '../context/loading.context';
 import { RestaurantContext } from '../context/restaurant.context';
 import Restaurants from './Restaurants';
+import { post, deleteRestaurant } from '../services/authService';
 
 const RestaurantDetails = () => {
   const [buttonDisabled, setButtonDisabled] = useState(false);
   const [updatedUser, setUpdatedUser] = useState({});
   const [restaurantInfo, setRestaurantInfo] = useState(null);
-  //------------working on edit feature--------------//
+  //<<<<------------working on edit feature--------------//>>>>>>>>>>
   const [editMode, setEditMode] = useState(false);
   const [editedRestaurant, setEditedRestaurant] = useState({});
-  //------------working on edit feature--------------//
-
+  const [errorMessage, setErrorMessage] = useState("")
+  //<<<<------------working on edit feature--------------//>>>>>>>>>>
+  //<<<<------------Need HELP! added deleteRestaurant--------------//>>>>>>>>>>
   const { user } = useContext(LoadingContext);
-  const { restaurantData, deleteRestaurant } = useContext(RestaurantContext);
+  const { restaurantData } = useContext(RestaurantContext);
   const { id } = useParams();
   const navigate = useNavigate();
 
@@ -34,10 +36,20 @@ const RestaurantDetails = () => {
       });
   };
 
-  //------------working on edit feature--------------//
-  const handleEdit = () => {
+  //<<<<------------working on edit feature--------------//>>>>>>>>>>
+  const handleEdit = (e) => {
+    e.preventDefault();
+    post(`/restaurants/${restaurantInfo._id}`, editedRestaurant)
+      .then((response) => setRestaurantInfo(response.data))
+      .catch((err) => {
+        console.log("error on edit", err)
+        if (err.response.data.msg) {
+          setErrorMessage(err.response.data.msg)
+        }
+      });
     setEditMode(true);
-    setEditedRestaurant({ ...restaurantInfo });
+
+    // setEditedRestaurant({ ...restaurantInfo });
   };
 
   const handleSave = () => {
@@ -49,19 +61,19 @@ const RestaurantDetails = () => {
     setEditMode(false);
     setEditedRestaurant({});
   };
-  //------------working on edit feature--------------//
+  //<<<<------------end Edit--------------//>>>>>>>>>>
 
-  //------------DELETE feature--------------//
+  //<<<<------------Need HELP! added deleteRestaurant--------------//>>>>>>>>>>
 
   const handleDelete = async () => {
     try {
-      await deleteRestaurant(id);
+      await deleteRestaurant(`/restaurants/${restaurantInfo._id}`);
       navigate('/restaurants');
     } catch (error) {
       console.log('Error deleting restaurant:', error);
     }
   };
-  //------------DELETE feature--------------//
+  //<<<<------------Need HELP! deleteRestaurant--------------//>>>>>>>>>>
 
   useEffect(() => {
     restaurantData.map((restaurant) => {
@@ -76,10 +88,10 @@ const RestaurantDetails = () => {
   return (
     <div>
       {restaurantInfo ? (
-        <div>
+        <div >
           <p>This is data</p>
           {editMode ? (
-            <div>
+            <form onSubmit={(e) => handleEdit(e)}>
               <input
                 type="text"
                 value={editedRestaurant.restaurantName}
@@ -100,9 +112,9 @@ const RestaurantDetails = () => {
                   }))
                 }
               />
-              <button onClick={handleSave}>Save</button>
+              <button type='submit'>Save</button>
               <button onClick={handleCancel}>Cancel</button>
-            </div>
+            </form>
           ) : (
             <div>
               <p>{restaurantInfo.restaurantName}</p>
@@ -114,14 +126,15 @@ const RestaurantDetails = () => {
                 />
               </p>
               <p>{restaurantInfo.description}</p>
-              <button onClick={handleEdit}>Edit</button>
+              <button onClick={() => setEditMode(true)}>Edit</button>
               <button onClick={handleDelete}>Delete</button>
             </div>
           )}
         </div>
       ) : (
         <p>Loading</p>
-      )}
+      )
+      }
 
       {/* <form>
         <input
@@ -130,7 +143,10 @@ const RestaurantDetails = () => {
           onChange={handleFileChange}
         />
       </form> */}
-    </div>
+      {errorMessage &&
+        (<h1>{errorMessage}</h1>)
+      }
+    </div >
   );
 };
 //------------working on edit feature--------------//
