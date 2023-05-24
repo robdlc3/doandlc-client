@@ -16,7 +16,22 @@ function RestaurantContextProvider({ children }) {
             .catch((err) => {
                 console.log(err)
             })
-    }
+    };
+
+    const deleteRestaurant = (id) => {
+        axios
+            .delete(baseUrl + "/restaurants/" + id)
+            .then((response) => {
+                // Filter the restaurantData array and remove the deleted restaurant
+                setRestaurantData((prevData) =>
+                    prevData.filter((restaurant) => restaurant._id !== id)
+                );
+            })
+            .catch((error) => {
+                console.log(error);
+            });
+    };
+
     useEffect(() => {
         if (!restaurantData.length) {
             getRestaurants()
@@ -24,7 +39,7 @@ function RestaurantContextProvider({ children }) {
     }, [])
 
     return (
-        <RestaurantContext.Provider value={{ restaurantData, getRestaurants, setRestaurantData }}>
+        <RestaurantContext.Provider value={{ restaurantData, getRestaurants, setRestaurantData, deleteRestaurant }}>
             {children}
         </RestaurantContext.Provider>
 

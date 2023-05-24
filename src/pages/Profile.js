@@ -26,7 +26,7 @@ const Profile = () => {
                 </div>
             )}
             <h4>Posts</h4>
-            <Link to='/add-post'>
+            <Link to='/add-restaurant'>
                 <button>Create new post</button>
             </Link>
             {userPosts ? (
