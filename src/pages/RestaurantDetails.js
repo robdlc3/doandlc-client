@@ -47,6 +47,11 @@ const RestaurantDetails = () => {
         <div>
           <p>This is data</p>
           <p>{restaurantInfo.restaurantName}</p>
+          <p><img src={restaurantInfo.image} alt="restaurant image" class="restaurant-image" /></p>
+          <p>{restaurantInfo.description}</p>
+          <button>
+            
+          </button>
         </div>
         :
         <p>Loading</p>

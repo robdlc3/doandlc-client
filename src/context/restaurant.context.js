@@ -2,8 +2,6 @@ import { createContext, useState, useEffect } from "react";
 import axios from "axios";
 import { baseUrl } from "../services/baseUrl";
 
-
-
 const RestaurantContext = createContext()
 
 function RestaurantContextProvider({ children }) {
