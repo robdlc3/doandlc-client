@@ -1,10 +1,19 @@
-import React, { useState } from 'react'
+import { useState, useEffect, useContext } from 'react'
+import { useParams } from 'react-router-dom';
 import { fileChange } from '../services/fileChange'
+import { LoadingContext } from '../context/loading.context';
+import { RestaurantContext } from '../context/restaurant.context';
+import Restaurants from './Restaurants';
 
 const RestaurantDetails = () => {
   const [buttonDisabled, setButtonDisabled] = useState(false);
   const [updatedUser, setUpdatedUser] = useState({});
+  const [restaurantInfo, setRestaurantInfo] = useState(null);
 
+  const { user } = useContext(LoadingContext);
+
+  const { restaurantData } = useContext(RestaurantContext);
+  const { id } = useParams()
   const handleFileChange = (e) => {
     setButtonDisabled(true);
 
@@ -20,15 +29,36 @@ const RestaurantDetails = () => {
       });
   }
 
+  useEffect(() => {
+    restaurantData.map((restaurant) => {
+      if (id === restaurant._id) {
+        console.log(restaurant, "!!!!HELLOOOOO!!")
+        setRestaurantInfo(restaurant)
+      }
+    })
+
+
+
+  }, [restaurantData])
+
   return (
     <div>
-      <form>
+      {restaurantInfo ?
+        <div>
+          <p>This is data</p>
+          <p>{restaurantInfo.restaurantName}</p>
+        </div>
+        :
+        <p>Loading</p>
+      }
+
+      {/* <form>
         <input
           type="file"
           name="img"
           onChange={handleFileChange}
         />
-      </form>
+      </form> */}
     </div>
   )
 }

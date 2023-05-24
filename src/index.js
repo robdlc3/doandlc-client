@@ -7,6 +7,7 @@ import reportWebVitals from './reportWebVitals';
 import { BrowserRouter } from 'react-router-dom';
 import { LoadingProvider } from './context/loading.context';
 import { AuthProvider } from './context/auth.context';
+import { RestaurantContextProvider } from './context/restaurant.context';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -14,7 +15,9 @@ root.render(
     <BrowserRouter>
       <LoadingProvider>
         <AuthProvider>
-          <App />
+          <RestaurantContextProvider>
+            <App />
+          </RestaurantContextProvider>
         </AuthProvider>
       </LoadingProvider>
     </BrowserRouter>

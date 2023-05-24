@@ -49,6 +49,7 @@ const Restaurants = () => {
                         {restaurants.map((restaurant) => {
                             return (
                                 <Link to={`/restaurant/${restaurant?._id}`} key={restaurant._id}>
+                                    <img src={restaurant.image} alt="restaurant image" />
                                     <p>{restaurant.restaurantName}</p>
                                 </Link>
                             )

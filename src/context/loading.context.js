@@ -47,7 +47,7 @@ const LoadingProvider = ({ children }) => {
     }
 
     return (
-        <LoadingContext.Provider value={{ restaurants, user, isLoading, setIsLoading, setUser, getRestaurants, findRestaurant, restaurant, getUserPosts, buttonDisabled, setButtonDisabled, posts, setPosts, getPosts, setRestaurants }} >
+        <LoadingContext.Provider value={{ restaurants, user, setUser, isLoading, setIsLoading, setUser, getRestaurants, findRestaurant, restaurant, getUserPosts, buttonDisabled, setButtonDisabled, posts, setPosts, getPosts, setRestaurants }} >
             {children}
         </LoadingContext.Provider>
     )
