@@ -50,6 +50,7 @@ const Restaurants = () => {
                             return (
                                 <Link to={`/restaurant/${restaurant?._id}`} key={restaurant._id}>
                                     <p>{restaurant.restaurantName}</p>
+                                    <img src={restaurant.image} alt="restaurant image" class="restaurant-image" />
                                 </Link>
                             )
                         })
@@ -61,4 +62,5 @@ const Restaurants = () => {
         </div>
     )
 }
+
 export default Restaurants

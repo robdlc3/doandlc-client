@@ -67,7 +67,7 @@ const AddRestaurant = () => {
     <div>
       <h1>Add Restaurant</h1>
       <form onSubmit={handleSubmit}>
-        <label>Name</label>
+        <label>Name:</label>
         <input
           type="text"
           name="restaurantName"
@@ -75,10 +75,10 @@ const AddRestaurant = () => {
           onChange={handleInputChange}
         />
 
-        <label>Description</label>
+        <label>My Review:</label>
         <textarea
           name="description"
-          value={newRestaurant.description}
+          value={newRestaurant.review}
           onChange={handleInputChange}
         ></textarea>
 
