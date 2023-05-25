@@ -16,7 +16,7 @@ const LoadingProvider = ({ children }) => {
 
     const getRestaurants = () => {
 
-        axios.get("http://localhost:4000/restaurants")
+        get("/restaurants")
             .then((results) => {
                 setRestaurants(results.data)
             })
