@@ -23,7 +23,7 @@ const Signup = () => {
     const handleSubmit = (e) => {
         e.preventDefault()
 
-        post('auth/signup', newUser)
+        post('/auth/signup', newUser)
             .then((results) => {
                 console.log("Signup", results.data)
                 storeToken(results.data.authToken)
