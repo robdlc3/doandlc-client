@@ -19,6 +19,7 @@ const RestaurantDetails = () => {
   const navigate = useNavigate();
   ///// New state for review stuff /////////
   const [review, setReview] = useState('');
+  const [savedReview, setSavedReview] = useState('');
   ///// New state for review stuff /////////
 
   const handleFileChange = (e) => {
@@ -82,20 +83,21 @@ const RestaurantDetails = () => {
     console.log('Review submitted:', review);
 
     const reviewData = {
-      review: review
+      reviews: review
     };
 
     post(`/reviews/add-review/${id}`, reviewData)
       .then((response) => {
 
         console.log('Review added:', response.data);
+        setSavedReview(response.data.reviews);
 
       })
       .catch((error) => {
         console.log('Error adding review:', error);
       });
 
-    setReview('');
+
   };
   ///////new review stuff ////
 
@@ -167,7 +169,7 @@ const RestaurantDetails = () => {
               )}
             </Card.Body>
           </Card>
-{/*///////////////////////////////////////////// review form  */}
+          {/*///////////////////////////////////////////// review form  */}
           {/* NEW REVIEW FORM 11AM*/}
           {!editMode && (
             <div>
@@ -185,13 +187,14 @@ const RestaurantDetails = () => {
                   Submit A Review
                 </Button>
               </Form>
+              {savedReview}
             </div>
           )}
         </div>
       ) : (
         <p>Loading</p>
       )}
-{/* ///////////////////////////////////////////// review form  */}
+      {/* ///////////////////////////////////////////// review form  */}
       {errorMessage && <h1>{errorMessage}</h1>}
     </div>
   );
