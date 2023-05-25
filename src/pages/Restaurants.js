@@ -33,11 +33,11 @@ const Restaurants = () => {
         <div>
             <h1>Restaurants</h1>
 
-            <div id='restaurant-search'>
+            {/* <div id='restaurant-search'>
                 <label>Find Restaurant</label>
                 <input type='text' name="searchTerm" value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)} />
 
-            </div>
+            </div> */}
 
             <Link to="/add-restaurant">
                 <button>Add New Restaurant</button>
