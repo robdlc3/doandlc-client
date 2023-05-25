@@ -54,6 +54,7 @@ const AddRestaurant = () => {
     post("/restaurants/create", newRestaurant).then((response) => {
       console.log("added restaurant!", response.data)
       setRestaurants([...restaurants, response.data.createdRestaurant])
+
       navigate('/restaurants')
     })
 

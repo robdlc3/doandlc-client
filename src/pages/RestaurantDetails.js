@@ -17,7 +17,7 @@ const RestaurantDetails = () => {
   //<<<<------------working on edit feature--------------//>>>>>>>>>>
   //<<<<------------Need HELP! added deleteRestaurant--------------//>>>>>>>>>>
   const { user } = useContext(LoadingContext);
-  const { restaurantData } = useContext(RestaurantContext);
+  const { restaurantData, getRestaurants } = useContext(RestaurantContext);
   const { id } = useParams();
   const navigate = useNavigate();
 
@@ -74,16 +74,20 @@ const RestaurantDetails = () => {
     }
   };
   //<<<<------------Need HELP! deleteRestaurant--------------//>>>>>>>>>>
-
+  useEffect(() => {
+    getRestaurants()
+  }, []);
   useEffect(() => {
     restaurantData.map((restaurant) => {
       if (id === restaurant._id) {
-        console.log(restaurant, "!!!!HELLOOOOO!!");
+        // console.log(restaurant, "!!!!HELLOOOOO!!");
         setRestaurantInfo(restaurant);
       }
     });
   }, [restaurantData]);
-
+  console.log(restaurantData, "--REST DATA--")
+  console.log(restaurantInfo, "RESTAURANT INFOOOO")
+  console.log(id, "IDDDD")
   //------------working on edit feature--------------//
   return (
     <div>
