@@ -37,9 +37,9 @@ const Restaurants = () => {
     <div>
       <h1>Restaurants</h1>
 
-      <Link to="/add-restaurant">
+      {/* <Link to="/add-restaurant">
         <Button variant="primary">Add New Restaurant</Button>
-      </Link>
+      </Link> */}
 
       {restaurants.length ? (
         <Row className="mt-4">
