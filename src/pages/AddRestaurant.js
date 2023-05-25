@@ -48,7 +48,6 @@ const AddRestaurant = () => {
       .then((response) => {
         console.log('Added restaurant!', response.data);
         setRestaurants([...restaurants, response.data.createdRestaurant]);
-
         navigate('/restaurants');
       })
       .catch((error) => {
@@ -71,7 +70,7 @@ const AddRestaurant = () => {
         </Form.Group>
 
         <Form.Group controlId="description">
-          <Form.Label>My Review:</Form.Label>
+          <Form.Label>About this Restaurant:</Form.Label>
           <Form.Control
             as="textarea"
             rows={3}

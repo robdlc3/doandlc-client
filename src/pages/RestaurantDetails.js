@@ -1,5 +1,5 @@
 import { useState, useEffect, useContext } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useParams, useNavigate, Link } from 'react-router-dom';
 import { fileChange } from '../services/fileChange';
 import { LoadingContext } from '../context/loading.context';
 import { RestaurantContext } from '../context/restaurant.context';
@@ -17,6 +17,9 @@ const RestaurantDetails = () => {
   const { restaurantData, getRestaurants } = useContext(RestaurantContext);
   const { id } = useParams();
   const navigate = useNavigate();
+  ///// New state for review stuff /////////
+  const [review, setReview] = useState('');
+  ///// New state for review stuff /////////
 
   const handleFileChange = (e) => {
     setButtonDisabled(true);
@@ -69,6 +72,33 @@ const RestaurantDetails = () => {
     getRestaurants();
   }, []);
 
+  ///////new review stuff ////
+  const handleReviewChange = (e) => {
+    setReview(e.target.value);
+  };
+
+  const handleSubmitReview = (e) => {
+    e.preventDefault();
+    console.log('Review submitted:', review);
+
+    const reviewData = {
+      review: review
+    };
+
+    post(`/reviews/add-review/${id}`, reviewData)
+      .then((response) => {
+
+        console.log('Review added:', response.data);
+
+      })
+      .catch((error) => {
+        console.log('Error adding review:', error);
+      });
+
+    setReview('');
+  };
+  ///////new review stuff ////
+
   useEffect(() => {
     restaurantData.forEach((restaurant) => {
       if (id === restaurant._id) {
@@ -76,6 +106,8 @@ const RestaurantDetails = () => {
       }
     });
   }, [restaurantData]);
+
+
 
   return (
     <div className="container">
@@ -130,15 +162,36 @@ const RestaurantDetails = () => {
                   <Button variant="danger" onClick={handleDelete}>
                     Delete
                   </Button>
+
                 </div>
               )}
             </Card.Body>
           </Card>
+{/*///////////////////////////////////////////// review form  */}
+          {/* NEW REVIEW FORM 11AM*/}
+          {!editMode && (
+            <div>
+              <Form onSubmit={handleSubmitReview}>
+                <Form.Group controlId="review">
+                  <Form.Label>Add a Review:</Form.Label>
+                  <Form.Control
+                    as="textarea"
+                    rows={3}
+                    value={review}
+                    onChange={handleReviewChange}
+                  />
+                </Form.Group>
+                <Button variant="success" type="submit">
+                  Submit A Review
+                </Button>
+              </Form>
+            </div>
+          )}
         </div>
       ) : (
         <p>Loading</p>
       )}
-
+{/* ///////////////////////////////////////////// review form  */}
       {errorMessage && <h1>{errorMessage}</h1>}
     </div>
   );
