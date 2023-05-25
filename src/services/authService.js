@@ -17,6 +17,14 @@ export const post = (route, body) => {
     });
 };
 
+export const deleteRestaurant = (route, body) => {
+    let token = localStorage.getItem("authToken");
+    console.log(token)
+    return axios.delete(baseUrl + route,  {
+        headers: { Authorization: `Bearer ${token}` },
+    });
+};
+
 export const updateProfile = (userId, updatedProfile) => {
     let token = localStorage.getItem("authToken");
 

@@ -22,17 +22,17 @@ const Profile = () => {
                     )}
                     <p>Name: {user.fullName}</p>
 
-                    <button onClick={handleUpdateProfile}>Update Profile</button>
+                    {/* <button onClick={handleUpdateProfile}>Update Profile</button> */}
                 </div>
             )}
             <h4>Posts</h4>
-            <Link to='/add-post'>
+            <Link to='/add-restaurant'>
                 <button>Create new post</button>
             </Link>
             {userPosts ? (
                 <div>user posts</div>
             ) : (
-                <p>No posts yet.</p>
+                <p> </p>
             )}
         </div>
     );

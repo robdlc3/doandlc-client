@@ -1,19 +1,23 @@
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 const Home = () => {
-    return (
-        <div id='home'>
-            <h1>Welcome!</h1>
+  return (
+    <div className="container">
+      <div id="home" className="homeContainer text-center">
+        <h1 className="display-4">đồ ăn DLC</h1>
 
-            <Link to={'/restaurants'}>
-                <h1>Restaurants</h1></Link>
+        <Link to="/restaurants" className="btn btn-primary mt-3">
+          Show me the eats
+        </Link>
+      </div>
 
-            <Link to={'/posts'}><h1>Reviews</h1></Link>
+      <div className="homeFood bg-secondary text-light py-5 text-center">
+        {/* <h2 className="mb-4">Delicious Food</h2>
+        <p className="lead">Explore a wide range of culinary delights.</p> */}
+      </div>
+    </div>
+  );
+};
 
-            {/* changed posts to reviews 10AM */}
-
-        </div>
-    )
-}
-
-export default Home
+export default Home;

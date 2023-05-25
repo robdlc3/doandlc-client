@@ -1,13 +1,12 @@
-import { uploadImage } from '../services/authService';
-import { post } from '../services/authService';
 import { useState, useContext } from 'react';
-import Restaurants from './Restaurants';
 import { useNavigate } from 'react-router-dom';
 import { LoadingContext } from '../context/loading.context';
+import { post } from '../services/authService';
+import { Form, Button } from 'react-bootstrap';
 
 const AddRestaurant = () => {
-  const navigate = useNavigate()
-  const { restaurants, setRestaurants } = useContext(LoadingContext)
+  const navigate = useNavigate();
+  const { restaurants, setRestaurants } = useContext(LoadingContext);
   const [newRestaurant, setNewRestaurant] = useState({
     restaurantName: '',
     image: '',
@@ -23,72 +22,77 @@ const AddRestaurant = () => {
   const handleFileChange = (e) => {
     e.preventDefault();
     const file = e.target.files[0];
-    console.log(file)
+    console.log(file);
     if (file) {
       const uploadData = new FormData();
       uploadData.append('image', file);
       post('/photo', uploadData)
         .then((response) => {
-
           setNewRestaurant({
             ...newRestaurant,
             image: response.data.image,
           });
         })
+        .catch((error) => {
+          console.log('Error uploading image:', error);
+        });
     }
-
-    // setNewRestaurant((prev) => ({
-    //   ...prev,
-    //   image: file,
-    // }));
   };
 
   const handleSubmit = async (e) => {
+    e.preventDefault();
 
-    e.preventDefault()
+    console.log(newRestaurant);
 
-    console.log(newRestaurant)
+    post('/restaurants/create', newRestaurant)
+      .then((response) => {
+        console.log('Added restaurant!', response.data);
+        setRestaurants([...restaurants, response.data.createdRestaurant]);
 
-    // console.log("these are the restaurants from state", restaurants)
-
-    post("/restaurants/create", newRestaurant).then((response) => {
-      console.log("added restaurant!", response.data)
-      setRestaurants([...restaurants, response.data.createdRestaurant])
-      navigate('/restaurants')
-    })
-
-
+        navigate('/restaurants');
+      })
       .catch((error) => {
-        console.log('Error uploading image:', error);
+        console.log('Error adding restaurant:', error);
       });
   };
 
   return (
-    <div>
+    <div className="container">
       <h1>Add Restaurant</h1>
-      <form onSubmit={handleSubmit}>
-        <label>Name:</label>
-        <input
-          type="text"
-          name="restaurantName"
-          value={newRestaurant.name}
-          onChange={handleInputChange}
-        />
+      <Form onSubmit={handleSubmit}>
+        <Form.Group controlId="restaurantName">
+          <Form.Label>Name:</Form.Label>
+          <Form.Control
+            type="text"
+            name="restaurantName"
+            value={newRestaurant.name}
+            onChange={handleInputChange}
+          />
+        </Form.Group>
 
-        <label>My Review:</label>
-        <textarea
-          name="description"
-          value={newRestaurant.review}
-          onChange={handleInputChange}
-        ></textarea>
+        <Form.Group controlId="description">
+          <Form.Label>My Review:</Form.Label>
+          <Form.Control
+            as="textarea"
+            rows={3}
+            name="description"
+            value={newRestaurant.review}
+            onChange={handleInputChange}
+          />
+        </Form.Group>
 
-        <label>Image</label>
-        <input type="file" name="image" onChange={handleFileChange} />
+        <Form.Group controlId="image">
+          <Form.Label>Image:</Form.Label>
+          <Form.Control type="file" name="image" onChange={handleFileChange} />
+        </Form.Group>
 
-        <button type="submit">Submit</button>
-      </form>
+        <Button variant="primary" type="submit">
+          Submit
+        </Button>
+      </Form>
     </div>
   );
 };
 
 export default AddRestaurant;
+//styling for AddRestaurant 9:58

@@ -33,7 +33,7 @@ function App() {
     <div className="App">
 
       <Navbar />
-      <h1>đồ ăn DLC</h1>
+      {/* <h1>đồ ăn DLC</h1> */}
       <Routes>
         <Route path='/' element={<Home />} />
         <Route path='/restaurants' element={<Restaurants />} />

@@ -12,13 +12,14 @@ const Navbar = () => {
         <nav className="navbar-container">
             <Link to='/'>Home</Link>
             <Link to='/restaurants'>Restaurants</Link>
-            <Link to='/posts'>Reviews</Link>
+            {/* <Link to='/posts'>Reviews</Link> */}
             {/* Changed Posts to reviews 10A */}
             {
                 getToken() ?
                     <>
+
+                        <Link to='/add-restaurant'>Add Review</Link>
                         <Link to='/profile'>Profile</Link>
-                        <Link to='/add-post'>Add Review</Link>
                         <button onClick={logOutUser}>Logout</button>
                     </>
                     :
