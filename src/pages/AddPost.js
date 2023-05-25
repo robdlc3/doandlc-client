@@ -34,8 +34,6 @@ const AddPost = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    // Perform file upload and other necessary tasks before submitting the post
-    // Example: using 'fileChange' service to upload the image file
 
 
     // Submit the post with the updated 'newPost' object

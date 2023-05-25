@@ -18,7 +18,7 @@ const Navbar = () => {
                 getToken() ?
                     <>
 
-                        <Link to='/add-restaurant'>Add Review</Link>
+                        <Link to='/add-restaurant'>Add Restaurant</Link>
                         <Link to='/profile'>Profile</Link>
                         <button onClick={logOutUser}>Logout</button>
                     </>
