@@ -99,7 +99,7 @@ const RestaurantDetails = () => {
 
 
   };
-  ///////new review stuff ////
+  
 
   useEffect(() => {
     restaurantData.forEach((restaurant) => {

@@ -73,4 +73,3 @@ const Restaurants = () => {
 
 export default Restaurants;
 
-//1034 sytling//

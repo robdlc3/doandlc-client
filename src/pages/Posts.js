@@ -5,7 +5,7 @@ const Posts = () => {
     const [posts, setPosts] = useState([]);
 
     useEffect(() => {
-        // Fetch the posts data from the backend API
+        
         get('/posts')
             .then((response) => {
                 setPosts(response.data);

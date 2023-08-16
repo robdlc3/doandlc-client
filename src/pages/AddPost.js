@@ -22,7 +22,7 @@ const AddPost = () => {
 
     fileChange(e)
       .then((response) => {
-        // Get the image  from the response and update the 'newPost' object
+        
         const imageUrl = response.data.image;
         setNewPost((prev) => ({ ...prev, image: imageUrl }));
       })
@@ -36,7 +36,7 @@ const AddPost = () => {
 
 
 
-    // Submit the post with the updated 'newPost' object
+    
     post('/posts/create', newPost)
       .then((results) => {
         setPosts([results.data, ...posts]);

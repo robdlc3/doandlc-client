@@ -8,7 +8,7 @@ const ProfileUpdate = () => {
 
     const [updatedProfile, setUpdatedProfile] = useState({
         fullName: user.fullName,
-        // Add other fields you want to update
+        
     });
 
     const handleInputChange = (e) => {
@@ -19,16 +19,16 @@ const ProfileUpdate = () => {
     };
 
     const handleUpdateProfile = () => {
-        // Update the user context with the updated profile data
+        
         const updatedUser = {
             ...user,
             fullName: updatedProfile.fullName,
-            // Update other fields accordingly
+        
         };
         setUser(updatedUser);
 
         console.log('Profile updated:', updatedProfile);
-        navigate('/profile'); // Redirect the user back to the profile page
+        navigate('/profile'); 
     };
 
     return (
