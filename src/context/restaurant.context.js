@@ -22,7 +22,7 @@ function RestaurantContextProvider({ children }) {
         axios
             .delete(baseUrl + "/restaurants/" + id)
             .then((response) => {
-                // Filter the restaurantData array and remove the deleted restaurant
+                
                 setRestaurantData((prevData) =>
                     prevData.filter((restaurant) => restaurant._id !== id)
                 );
