@@ -47,6 +47,4 @@ function RestaurantContextProvider({ children }) {
 }
 
 
-
-
 export { RestaurantContext, RestaurantContextProvider }
