@@ -19,7 +19,6 @@ function AuthProvider({ children }) {
     const authenticateUser = () => {
         const storedToken = localStorage.getItem('authToken');
 
-        
         if (storedToken) {
         
             get('/auth/verify')
