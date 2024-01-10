@@ -14,7 +14,7 @@ const Posts = () => {
                 console.log('Error while fetching posts:', error);
             });
     }, []);
-
+//
     return (
         <div>
             <h1>All Posts</h1>

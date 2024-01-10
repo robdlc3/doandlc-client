@@ -93,5 +93,6 @@ const AddRestaurant = () => {
   );
 };
 
+
 export default AddRestaurant;
 //styling for AddRestaurant 9:58
